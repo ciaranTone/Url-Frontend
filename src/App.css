@@ -1,0 +1,37 @@
+.App{
+  align-items: center;
+}
+
+.header{
+  text-align: center;
+  padding: 30px;
+  color: black;
+  background-color:aliceblue;
+  border: 5px solid black;
+}
+
+.form{
+  text-align: center;
+  padding: 50px;
+  background-color: white;
+  padding: 50px;
+  width:fit-content;
+  border: solid 5px black;
+}
+
+.form, :placeholder-shown{
+  text-align: center;
+}
+
+.table, th, tr, td{
+  border:2px solid black;
+  border-collapse: collapse;
+}
+
+.alias{
+  margin-left: 10px;
+}
+
+.button{
+  cursor: pointer;
+}
