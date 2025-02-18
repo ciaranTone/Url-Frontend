@@ -36,19 +36,28 @@ const GetUrls = () => {
             <div className="App-header">
                 <h2>Shortened URLs</h2>
             </div>
-            <ul>
-                {urls.map((url) => (
-                    <li key={url.id}>
-                        <a href={url.originalUrl} target="_blank" rel="noopener noreferrer" className="Shortened-Url">
-                            {url.shortenedUrl}
-                        </a>
-                        <button onClick={() => deleteUrl(url.id)}>Delete</button>
-                    </li>
-                ))}
-            </ul>
+            <div>
+                <table>
+                    <tr>
+                        <th>Short Url</th>
+                    </tr>
+                </table>
+            </div>
+
         </div>
     );
     
 };
 
 export default GetUrls;
+
+{/* <ul>
+{urls.map((url) => (
+    <li key={url.id}>
+        <a href={url.originalUrl} target="_blank" rel="noopener noreferrer" className="Shortened-Url">
+            {url.shortenedUrl}
+        </a>
+        <button onClick={() => deleteUrl(url.id)}>Delete</button>
+    </li>
+))}
+</ul> */}
