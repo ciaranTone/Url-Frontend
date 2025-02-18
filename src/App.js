@@ -5,13 +5,12 @@ import './App.css';
 
 function App(){
    const [shortenedUrl, setShortenedUrl] = useState('');
-   //const [originalUrl, setOriginalUrl] = useState('');
   return(
     <div className='App'>
     <header className='header'>
       <h1 className={"App-header"}>URL Shortener</h1>
-      {<UrlForm onShorten={setShortenedUrl} /> }
-      {shortenedUrl && (
+      {<UrlForm onShorten={setShortenedUrl}/> }
+      {shortenedUrl &&(
         <div>
           <h2>Shortened URL:</h2>
           <a href={shortenedUrl} target="_blank" rel="no opener noreferrer">{shortenedUrl}</a>
