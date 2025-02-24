@@ -35,3 +35,13 @@
 .button{
   cursor: pointer;
 }
+
+.displayShort{
+  border: 2px solid black;
+  text-align: center;
+  width: 30%;
+}
+
+.edit{
+  margin: 5px;
+}

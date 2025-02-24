@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import GetUrls from './GetUrls';
 const UrlForm = ({ onShorten }) => {
     const [originalUrl, setOriginalUrl] = useState('');
     const [shortenedUrl, setShortenedUrl] = useState('');
@@ -53,6 +53,11 @@ const UrlForm = ({ onShorten }) => {
             <button className='button' type="submit">
                 Shorten
             </button>
+            <div>
+            <input
+                
+            />
+            </div>
 
         </form>
     )

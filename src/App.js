@@ -5,6 +5,7 @@ import './App.css';
 
 function App(){
    const [shortenedUrl, setShortenedUrl] = useState('');
+   const [updateUrl, setUpdateUrls] = useState('');
   return(
     <div className='App'>
     <header className='header'>
@@ -13,11 +14,16 @@ function App(){
       {shortenedUrl &&(
         <div>
           <h2>Shortened URL:</h2>
-          <a href={shortenedUrl} target="_blank" rel="no opener noreferrer">{shortenedUrl}</a>
+          {/* <a href={shortenedUrl} target="_blank" rel="no opener noreferrer">{shortenedUrl}</a> */}
+          <div className='displayShort'>
+            <p>http://localhost:8080/url-shortener/{shortenedUrl}</p>
+          </div>
+          <button className='copyButton'>Copy</button>
         </div>
       )}
     </header>
-  { <GetUrls/>}
+    <h2>Update</h2>
+  {<GetUrls/>}
   </div>
   );
 };
