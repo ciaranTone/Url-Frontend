@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../App.css';
-import ToggleInput from './UpdateUrls';
 
 const GetUrls = () => {
     const [urls, setUrls] = useState([]);// State to hold the list of URLs
@@ -91,12 +90,13 @@ const GetUrls = () => {
                                          {inputBox && (
                                             <>
                                             <input
+                                                id='update'
                                                 className='update'
                                                 value={shortenedUrl}
                                                 onChange={(e) => setShortenedUrl(e.target.value)}
                                                 placeholder='Update Url'
                                             ></input>
-                                            < button id='update' onClick={() => updateUrl(url.id)}>Update</button>
+                                            < button onClick={() => updateUrl(url.id)}>Update</button>
                                             </>
                                          )}
                                         
