@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import GetUrls from './GetUrls';
+
 const UrlForm = ({ onShorten }) => {
-    const [originalUrl, setOriginalUrl] = useState('');
-    const [shortenedUrl, setShortenedUrl] = useState('');
+    const [originalUrl, setOriginalUrl] = useState('');//State to set original urls
+    const [shortenedUrl, setShortenedUrl] = useState('');//State to set shortened urls
     const [error, setError] = useState('');
+
 
     const handleSubmit = async (event) => {
         var userInput = document.getElementById('alias').value;
         event.preventDefault();
         try {
-
             if (!!userInput) {
                 const response = await axios.post("http://localhost:8080/url-shortener/alias", { originalUrl, shortenedUrl, headers: { 'Content - Type': 'application/json' } })
                 setOriginalUrl(originalUrl);
                 setShortenedUrl(shortenedUrl);
-                //onShorten(response.data);
                 onShorten(shortenedUrl);
                 console.log(response.data);
             }
@@ -30,8 +29,6 @@ const UrlForm = ({ onShorten }) => {
         }
     }
 
-
-
     return (
         <form className='form' onSubmit={handleSubmit}>
             <input
@@ -41,6 +38,7 @@ const UrlForm = ({ onShorten }) => {
                 onChange={(e) => setOriginalUrl(e.target.value)}
                 placeholder='Enter URL'
                 required
+                
             />
             <input
                 id='alias'
@@ -53,12 +51,6 @@ const UrlForm = ({ onShorten }) => {
             <button className='button' type="submit">
                 Shorten
             </button>
-            <div>
-            <input
-                
-            />
-            </div>
-
         </form>
     )
 }

@@ -3,9 +3,12 @@ import UrlForm from './components/UrlForm';
 import GetUrls from './components/GetUrls';
 import './App.css';
 
+function reloadPage(){
+  window.location.reload();
+}
+
 function App(){
    const [shortenedUrl, setShortenedUrl] = useState('');
-   const [updateUrl, setUpdateUrls] = useState('');
   return(
     <div className='App'>
     <header className='header'>
@@ -16,13 +19,15 @@ function App(){
           <h2>Shortened URL:</h2>
           {/* <a href={shortenedUrl} target="_blank" rel="no opener noreferrer">{shortenedUrl}</a> */}
           <div className='displayShort'>
-            <p>http://localhost:8080/url-shortener/{shortenedUrl}</p>
+            <p className='shortDisplay'>http://localhost:8080/url-shortener/{shortenedUrl}</p>
           </div>
+          <div>
           <button className='copyButton'>Copy</button>
+            <button onClick={reloadPage}>Another??</button>
+          </div>
         </div>
       )}
     </header>
-    <h2>Update</h2>
   {<GetUrls/>}
   </div>
   );
