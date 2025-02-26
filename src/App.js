@@ -22,8 +22,8 @@ function App(){
             <p className='shortDisplay'>http://localhost:8080/url-shortener/{shortenedUrl}</p>
           </div>
           <div>
-          <button className='copyButton'>Copy</button>
-            <button onClick={reloadPage}>Another??</button>
+          {/* <button className='copyButton'>Copy</button> */}
+            <button className='refresh-button' onClick={reloadPage}>Shorten Another</button>
           </div>
         </div>
       )}

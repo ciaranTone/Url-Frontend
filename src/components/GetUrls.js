@@ -9,6 +9,7 @@ const GetUrls = () => {
     const [inputBox, setInputBox] = useState(false);//State to trigger input box
     const [shortenedUrl, setShortenedUrl] = useState(''); //State to set shortened urls
     const [originalUrl, setOriginalUrl] = useState('');//State to set original urls
+    const [showUrls, setShowUrls] = useState(false);
 
     // useEffect hook to fetch URLs when the component mounts
     //Fetch urls in database. Allows for aoutomatic updates
@@ -72,76 +73,89 @@ const GetUrls = () => {
                 setOriginalUrl(originalUrl);
                 console.log("Original url updated");
             }
+            window.location.reload();
         }catch(error){
             console.error("That did not work", error);
         }
     }
 
+    const showUrlsTable = () => {
+        setShowUrls(!showUrls)
+    }
 
     return (
         <div className="display">
-            <div className="App-header">
-                <h2>Shortened URLs</h2>
-            </div>
-            <div>
-                <table className='table'>
-                    <tr className='tr'>
-                        <th className='th'>Short Url</th>
-                        <th className='th'>Original Url</th>
-                    </tr>
-                    <tr className='tr'>
-                        <td className='td'>
-                            <ol className='ol'>
-                                {urls.map((url) => (
-                                    <li className='li' key={url.id}>
-                                        <a href={url.originalUrl} target="_blank" rel="noopener noreferrer" className="Shortened-Url">
-                                            {"http://localhost:8080/url-shortener/" + url.shortenedUrl}
-                                        </a>
-                                        <button onClick={() => deleteUrl(url.id)}>Delete</button>
-                                         {<button className='edit'onClick={() => getUrl(url.id)}>Edit</button>}
-                                         {inputBox && (
-                                            <>
-                                            <input
-                                                id='update' 
-                                                className='update'
-                                                value={shortenedUrl}
-                                                onChange={(e) => setShortenedUrl(e.target.value)}
-                                                placeholder='Update Url'
-                                            ></input>
-                                            < button onClick={() => updateUrl(url.id)}>Update</button>
-                                            </>
-                                         )}
-                                        
-                                    </li>
-                                ))}
-                            </ol>
-                        </td>
-                        <td className='td'>
-                            <ol>
-                                {urls.map((url) => (
-                                    <li className='li' key={url.id}>
-                                        <a href={url.originalUrl} target="_blank" rel="noopener noreferrer" className="Shortened-Url">
-                                            {url.originalUrl}
-                                        </a>
-                                        {<button className='edit'onClick={() => getUrl(url.id)}>Edit</button>}
-                                            {inputBox && (
-                                            <>
-                                            <input
-                                                className='updateOriginalInput'
-                                                value={originalUrl}
-                                                onChange={(e) => setOriginalUrl(e.target.value)}
-                                                placeholder='Update Url'
-                                            ></input>
-                                            < button onClick={() => updateUrl(url.id)}>Update</button>
-                                            </>
-                                         )}
-                                    </li>
-                                ))}
-                            </ol>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+            <center>{<button className='showUrls-button' onClick={showUrlsTable}>Saved Urls</button>}</center>  
+            {showUrls && (
+                <>
+                <div className="App-header">
+                    <h2 className='shortHeader'>Shortened URLs</h2>
+                </div>
+                    <div>
+                        <table className='table'>
+                            <tr className='tr'>
+                                <th className='th'>Short Url</th>
+                                <th className='th'>Original Url</th>
+                            </tr>
+                            <tr className='tr'>
+                                <td className='td'>
+                                    <ol className='ol'>
+                                        {urls.map((url) => (
+                                            <li className='li' key={url.id}>
+                                                <a href={url.originalUrl} target="_blank" rel="noopener noreferrer" className="Shortened-Url">
+                                                    {"http://localhost:8080/url-shortener/" + url.shortenedUrl}
+                                                </a>
+                                                {/* Delete Button */}
+                                                <button className='delete-button' onClick={() => deleteUrl(url.id)}><i class="fa fa-trash"></i></button>
+                                                {/* Edit Button */}
+                                                {<button className='edit-button' onClick={() => getUrl(url.id)}><i class="fa fa-edit"></i></button>}
+                                                {inputBox && (
+                                                    <>
+                                                    <input
+                                                        id='update' 
+                                                        className='update'
+                                                        value={shortenedUrl}
+                                                        onChange={(e) => setShortenedUrl(e.target.value)}
+                                                        placeholder='Update Url'
+                                                    ></input>
+                                                        < button className='update-button' onClick={() => updateUrl(url.id)}><i class="fa fa-save"></i></button>
+                                                    </>
+                                                )}
+                                                
+                                            </li>
+                                        ))}
+                                    </ol>
+                                </td>
+                                <td className='td'>
+                                    <ol>
+                                        {urls.map((url) => (
+                                            <li className='li' key={url.id}>
+                                                <a href={url.originalUrl} target="_blank" rel="noopener noreferrer" className="Shortened-Url">
+                                                    {url.originalUrl}
+                                                </a>
+                                                {/* Edit Button */}
+                                                {<button className='edit-button' onClick={() => getUrl(url.id)}><i class="fa fa-edit"></i></button>}
+                                                    {inputBox && (
+                                                    <>
+                                                    <input
+                                                        className='updateOriginalInput'
+                                                        value={originalUrl}
+                                                        onChange={(e) => setOriginalUrl(e.target.value)}
+                                                        placeholder='Update Url'
+                                                    ></input>
+                                                        < button className='update-button' onClick={() => updateUrl(url.id)}><i class="fa fa-save"></i></button>
+                                                    </>
+                                                )}
+                                            </li>
+                                        ))}
+                                    </ol>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                        </>
+                    )}
+
         </div>
     );
 

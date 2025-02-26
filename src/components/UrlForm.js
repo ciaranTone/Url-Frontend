@@ -7,19 +7,31 @@ const UrlForm = ({ onShorten }) => {
     const [error, setError] = useState('');
 
 
+    //Submit logic
     const handleSubmit = async (event) => {
+        //Variable to determine if alias box is being used
         var userInput = document.getElementById('alias').value;
+        //Prevents refresh on submit
         event.preventDefault();
         try {
+            //Check to see if alias box is being used
+            //Alias box being used
             if (!!userInput) {
+                //Api to retrieve method associated
                 const response = await axios.post("http://localhost:8080/url-shortener/alias", { originalUrl, shortenedUrl, headers: { 'Content - Type': 'application/json' } })
+                //set original url 
                 setOriginalUrl(originalUrl);
+                //set alias 
                 setShortenedUrl(shortenedUrl);
+                //Display shortened url
                 onShorten(shortenedUrl);
                 console.log(response.data);
             }
             else {
+                //Alias box not being used
+                //Api to retrieve method associated
                 const response = await axios.post("http://localhost:8080/url-shortener/short-url", { originalUrl, headers: { 'Content - Type': 'application/json' } })
+                //set original url 
                 setOriginalUrl(originalUrl);
                 onShorten(response.data);
                 console.log("Short url used");
@@ -34,8 +46,8 @@ const UrlForm = ({ onShorten }) => {
             <input
                 className='enterUrl'
                 type="url"
-                value={originalUrl}
-                onChange={(e) => setOriginalUrl(e.target.value)}
+                value={originalUrl}//Bind state to input
+                onChange={(e) => setOriginalUrl(e.target.value)}//Updates input box
                 placeholder='Enter URL'
                 required
                 
@@ -43,8 +55,8 @@ const UrlForm = ({ onShorten }) => {
             <input
                 id='alias'
                 className='alias'
-                value={shortenedUrl}
-                onChange={(e) => setShortenedUrl(e.target.value)}
+                value={shortenedUrl}//Bind state to input
+                onChange={(e) => setShortenedUrl(e.target.value)}//Updates input box 
                 type='text'
                 placeholder='Alias'
             />

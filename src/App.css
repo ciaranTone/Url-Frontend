@@ -10,6 +10,10 @@
   border: 5px solid black;
 }
 
+.shortHeader{
+  text-align: center;
+}
+
 .form{
   text-align: center;
   padding: 50px;
@@ -17,6 +21,8 @@
   padding: 50px;
   width:fit-content;
   border: solid 5px black;
+  border-radius: 25px;
+  margin: 0 auto;
 }
 
 .form, :placeholder-shown{
@@ -26,6 +32,8 @@
 .table, th, tr, td{
   border:2px solid black;
   border-collapse: collapse;
+  border-radius: 50px;
+  margin: 0 auto;
 }
 
 .alias{
@@ -38,11 +46,42 @@
 
 .displayShort{
   border: 2px solid black;
+  border-radius: 25px;
+  background-color: white;
   text-align: center;
   width: 30%;
   margin: 0 auto;
 }
 
-.edit{
+.delete-button, .edit-button, .update-button, .refresh-button{
   margin: 5px;
+  cursor: pointer;
+  font-family:cursive;
+  font-size: large ;
+  color: black;
+}
+
+.delete-button:hover, .edit-button:hover, .update-button:hover{
+  color: white
+
+}
+.delete-button{
+  background-color: rgb(243, 52, 52);
+}
+
+.edit-button{
+  background-color: rgb(7, 117, 241);
+}
+
+.update-button{
+  background-color: rgb(80, 223, 80);
+
+}
+
+.showUrls-button{
+  font-size:x-large;
+  font-family: cursive;
+  padding: 10px;
+  margin-left: 20px;
+  margin-top: 20px;
 }
