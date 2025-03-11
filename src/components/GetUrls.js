@@ -4,7 +4,7 @@ import axios from 'axios';
 import '../App.css';
 
 const GetUrls = () => {
-    //Uset States
+    //Use States
     const [urls, setUrls] = useState([]);// State to hold the list of URLs
     const [inputBox, setInputBox] = useState(false);//State to trigger input box
     const [shortenedUrl, setShortenedUrl] = useState(''); //State to set shortened urls
@@ -12,7 +12,7 @@ const GetUrls = () => {
     const [showUrls, setShowUrls] = useState(false);
 
     // useEffect hook to fetch URLs when the component mounts
-    //Fetch urls in database. Allows for aoutomatic updates
+    //Fetch urls in database. Allows for automatic updates
     useEffect(() => { 
         const fetchUrls = async () => {
             try {
@@ -68,7 +68,7 @@ const GetUrls = () => {
             }
             else{
                 //if box is empty update original url
-                const response = await axios.put(`http://localhost:8080/url-shortener/updateOriginal/${id}`, {originalUrl,  headers: { 'Content - Type': 'application/json' }})
+                await axios.put(`http://localhost:8080/url-shortener/updateOriginal/${id}`, {originalUrl,  headers: { 'Content - Type': 'application/json' }})
                 //Update state with new data 
                 setOriginalUrl(originalUrl);
                 console.log("Original url updated");
@@ -85,7 +85,7 @@ const GetUrls = () => {
 
     return (
         <div className="display">
-            <center>{<button className='showUrls-button' onClick={showUrlsTable}>Saved Urls</button>}</center>  
+            <center>{<button id='showUrls-button' className='showUrls-button' onClick={showUrlsTable}>Saved Urls</button>}</center>  
             {showUrls && (
                 <>
                 <div className="App-header">
@@ -106,9 +106,9 @@ const GetUrls = () => {
                                                     {"http://localhost:8080/url-shortener/" + url.shortenedUrl}
                                                 </a>
                                                 {/* Delete Button */}
-                                                <button className='delete-button' onClick={() => deleteUrl(url.id)}><i class="fa fa-trash"></i></button>
+                                                <button id='delete-button' className='delete-button' onClick={() => deleteUrl(url.id)}><i class="fa fa-trash"></i></button>
                                                 {/* Edit Button */}
-                                                {<button className='edit-button' onClick={() => getUrl(url.id)}><i class="fa fa-edit"></i></button>}
+                                                {<button id='edit-button' className='edit-button' onClick={() => getUrl(url.id)}><i class="fa fa-edit"></i></button>}
                                                 {inputBox && (
                                                     <>
                                                     <input

@@ -44,6 +44,7 @@ const UrlForm = ({ onShorten }) => {
     return (
         <form className='form' onSubmit={handleSubmit}>
             <input
+                id='url-input'
                 className='enterUrl'
                 type="url"
                 value={originalUrl}//Bind state to input
@@ -60,7 +61,7 @@ const UrlForm = ({ onShorten }) => {
                 type='text'
                 placeholder='Alias'
             />
-            <button className='button' type="submit">
+            <button id='shorten-button' className='button' type="submit">
                 Shorten
             </button>
         </form>
